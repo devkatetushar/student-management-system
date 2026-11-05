@@ -1,0 +1,44 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Campusly · Student Management{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+  :root{--ink:#17152d;--muted:#77758e;--purple:#7558f5;--pink:#ff70b8;--cyan:#5ee7df;--line:#eceaf5;--paper:#fbfaff}
+  *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}
+  a{color:inherit;text-decoration:none}.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px max(5vw,22px);background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  .brand{display:flex;align-items:center;gap:10px;font:700 22px 'Space Grotesk',sans-serif;letter-spacing:-.8px}.logo{width:37px;height:37px;border-radius:13px;background:linear-gradient(135deg,#7658ff,#ff70b8);display:grid;place-items:center;color:white;font-weight:700;box-shadow:0 7px 20px #9b7dff55}
+  nav{display:flex;align-items:center;gap:20px;font-weight:600;font-size:14px}.navlink{color:#66637d}.navlink:hover{color:var(--purple)}
+  .btn{border:0;border-radius:13px;padding:11px 16px;font:700 14px 'DM Sans';display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:.2s}
+  .btn:hover{transform:translateY(-2px)}.primary{background:linear-gradient(135deg,#7658ff,#9a69f7);color:#fff;box-shadow:0 8px 20px #8a68f044}.soft{background:#f0edff;color:#694df0}.danger{background:#fff0f4;color:#d83c73}.white{background:white;color:#6951e8}
+  .wrap{width:min(1160px,90%);margin:36px auto 70px}.messages{margin:18px auto;width:min(1160px,90%)}.message{padding:13px 16px;border-radius:12px;background:#e8fff8;color:#167b68;margin-bottom:8px}
+  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--purple);font-weight:700}.page-title{font:700 clamp(30px,4vw,42px) 'Space Grotesk';letter-spacing:-1.5px;margin:8px 0}.sub{color:var(--muted);line-height:1.7}
+  .panel{background:white;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 12px 40px #30205b08}.grid{display:grid;gap:18px}.stats{grid-template-columns:repeat(3,minmax(0,1fr));margin:26px 0}.stat{padding:23px;border-radius:20px;background:white;border:1px solid var(--line);position:relative;overflow:hidden}.stat:after{content:'';position:absolute;width:95px;height:95px;right:-30px;top:-30px;border-radius:50%;background:#eee8ff}.stat:nth-child(2):after{background:#ffe4f2}.stat:nth-child(3):after{background:#dffbf7}.stat-label{font-size:13px;color:var(--muted)}.stat-num{font:700 34px 'Space Grotesk';margin-top:9px}
+  .table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:720px}th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#8b879f;padding:14px;border-bottom:1px solid var(--line)}td{padding:16px 14px;border-bottom:1px solid #f2f0f8;font-size:14px}tr:last-child td{border-bottom:0}.avatar{width:38px;height:38px;display:inline-grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,#e8e2ff,#ffdff0);font-weight:700;color:#6348dc;margin-right:10px}.student-name{display:flex;align-items:center;font-weight:700}.pill{padding:6px 10px;background:#f0edff;color:#6b50e7;border-radius:999px;font-size:12px;font-weight:700}
+  .searchbar{display:flex;gap:10px;flex-wrap:wrap}.field{width:100%;padding:13px 14px;border:1px solid #e5e1f2;border-radius:12px;font:500 14px 'DM Sans';outline:none;background:#fff}.field:focus{border-color:#9079ff;box-shadow:0 0 0 3px #8d75ff20}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.formfield label{display:block;font-size:13px;font-weight:700;margin-bottom:8px}.helptext,.errorlist{font-size:12px;color:#d83c73}.form-actions{display:flex;gap:10px;margin-top:24px}.auth-card{width:min(500px,100%);margin:35px auto}.auth-card h1{font:700 32px 'Space Grotesk';letter-spacing:-1px}.hero{padding:65px 0 75px;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:45px}.hero h1{font:700 clamp(42px,6vw,70px)/1.02 'Space Grotesk';letter-spacing:-3px;margin:16px 0 20px}.gradient-text{background:linear-gradient(100deg,#7458ff,#ff65b1);-webkit-background-clip:text;color:transparent}.hero p{font-size:17px;line-height:1.8;color:var(--muted);max-width:570px}.hero-actions{display:flex;gap:12px;margin-top:27px;flex-wrap:wrap}.hero-art{min-height:350px;border-radius:32px;background:linear-gradient(145deg,#785bff,#a58bff 52%,#ff8dc8);padding:25px;position:relative;overflow:hidden;box-shadow:0 25px 65px #8b6dff38}.float-card{background:#ffffffed;border-radius:22px;padding:20px;position:absolute;box-shadow:0 15px 35px #2b175b20}.float-card.one{left:25px;top:35px;width:65%}.float-card.two{right:20px;bottom:30px;width:60%}.spark{font-size:27px}.hero-stat{font:700 30px 'Space Grotesk'}.feature-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin:10px 0 70px}.feature{padding:25px}.feature-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:#eee9ff;font-size:23px;margin-bottom:17px}.feature:nth-child(2) .feature-icon{background:#ffe5f2}.feature:nth-child(3) .feature-icon{background:#ddfbf5}.footer{text-align:center;padding:25px;color:#9995ad;font-size:12px;border-top:1px solid var(--line)}
+  @media(max-width:760px){.topbar{padding:14px 5%;align-items:flex-start;gap:14px}.brand{font-size:19px}nav{gap:10px;flex-wrap:wrap;justify-content:flex-end;font-size:12px}.hero{grid-template-columns:1fr;padding:35px 0 50px}.hero-art{min-height:300px}.stats,.feature-grid{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.wrap{margin-top:25px}.panel{padding:18px}}
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{% url 'home' %}"><span class="logo">C</span> campusly<span style="color:#8b72ff">.</span></a>
+  <nav>
+    {% if user.is_authenticated %}
+      <a class="navlink" href="{% url 'dashboard' %}">Dashboard</a>
+      <a class="navlink" href="{% url 'student_list' %}">Students</a>
+      {% if user.is_staff %}<a class="navlink" href="/admin/">Admin</a>{% endif %}
+      <span class="navlink">Hi, {{ user.username }}</span>
+      <form method="post" action="{% url 'logout' %}" style="display:inline">{% csrf_token %}<button class="btn soft" type="submit">Log out ↗</button></form>
+    {% else %}
+      <a class="navlink" href="{% url 'login' %}">Log in</a><a class="btn primary" href="{% url 'register' %}">Get started ↗</a>
+    {% endif %}
+  </nav>
+</header>
+{% if messages %}<div class="messages">{% for message in messages %}<div class="message">{{ message }}</div>{% endfor %}</div>{% endif %}
+{% block content %}{% endblock %}
+<footer class="footer">Made for curious minds ✦ Campusly Student Management System</footer>
+</body></html>

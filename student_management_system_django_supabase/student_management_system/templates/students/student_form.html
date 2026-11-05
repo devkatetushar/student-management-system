@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ heading }} · Campusly{% endblock %}
+{% block content %}
+<main class="wrap"><div class="auth-card panel" style="width:min(760px,100%)"><div class="eyebrow">STUDENT WORKSPACE</div><h1>{{ heading }}</h1><p class="sub">Keep the details clear and up to date.</p>
+<form method="post">{% csrf_token %}{{ form.non_field_errors }}<div class="formgrid">
+{% for field in form %}<div class="formfield"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field.as_widget|safe }}{% if field.help_text %}<div class="helptext">{{ field.help_text|safe }}</div>{% endif %}{{ field.errors }}</div>{% endfor %}
+</div><script>document.querySelectorAll('input,select,textarea').forEach(e=>e.classList.add('field'));</script>
+<div class="form-actions"><button class="btn primary" type="submit">{{ button }} ↗</button><a class="btn soft" href="{% url 'student_list' %}">Cancel</a></div></form></div></main>
+{% endblock %}

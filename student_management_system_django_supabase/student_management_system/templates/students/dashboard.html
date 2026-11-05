@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · Campusly{% endblock %}
+{% block content %}
+<main class="wrap">
+  <div class="eyebrow">YOUR SPACE / OVERVIEW</div><h1 class="page-title">Hey {{ user.first_name|default:user.username }} 👋</h1><p class="sub">A little clarity goes a long way. Here's your student workspace.</p>
+  <div class="grid stats">
+    <div class="stat"><div class="stat-label">Student records</div><div class="stat-num">{{ student_count }}</div><div class="sub" style="font-size:12px">In your workspace</div></div>
+    <div class="stat"><div class="stat-label">Unique courses</div><div class="stat-num">{{ course_count }}</div><div class="sub" style="font-size:12px">Learning paths represented</div></div>
+    <div class="stat"><div class="stat-label">Your role</div><div class="stat-num" style="font-size:25px">{{ user.is_staff|yesno:"Admin,Member" }}</div><div class="sub" style="font-size:12px">{% if is_staff %}Full student management{% else %}Your submitted records{% endif %}</div></div>
+  </div>
+  <div class="panel" style="margin-bottom:20px"><div style="display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap"><div><h2 style="font:700 22px 'Space Grotesk';margin:0 0 6px">Quick actions</h2><div class="sub">What would you like to do today?</div></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn primary" href="{% url 'student_create' %}">＋ Add student</a><a class="btn soft" href="{% url 'student_list' %}">Browse records →</a>{% if user.is_staff %}<a class="btn soft" href="/admin/">Django admin ↗</a>{% endif %}</div></div></div>
+  <div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h2 style="font:700 22px 'Space Grotesk';margin:0">Recently added</h2><a class="navlink" href="{% url 'student_list' %}">View all →</a></div>
+  {% if recent_students %}<div class="table-wrap"><table><thead><tr><th>Student</th><th>Student ID</th><th>Course</th><th>Year</th></tr></thead><tbody>{% for s in recent_students %}<tr><td><div class="student-name"><span class="avatar">{{ s.full_name|slice:":1"|upper }}</span>{{ s.full_name }}</div></td><td>{{ s.student_id }}</td><td>{{ s.course }}</td><td><span class="pill">Year {{ s.year }}</span></td></tr>{% endfor %}</tbody></table></div>{% else %}<p class="sub">No records yet. Add your first student and watch your dashboard come to life.</p>{% endif %}</div>
+</main>
+{% endblock %}

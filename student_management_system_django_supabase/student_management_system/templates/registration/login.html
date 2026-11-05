@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Log in · Campusly{% endblock %}
+{% block content %}
+<main class="wrap"><div class="auth-card panel"><div class="eyebrow">WELCOME BACK ✦</div><h1>Good to see you.</h1><p class="sub">Log in to pick up where you left off.</p>
+{% if form.errors %}<div class="message" style="background:#fff0f4;color:#b72f63">Please check your username and password.</div>{% endif %}
+<form method="post">{% csrf_token %}{% for field in form %}<div class="formfield" style="margin:18px 0"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field.as_widget|safe }}{{ field.errors }}</div>{% endfor %}<script>document.querySelectorAll('input').forEach(e=>e.classList.add('field'));</script><button class="btn primary" style="width:100%;margin-top:10px" type="submit">Log in securely ↗</button></form><p class="sub" style="font-size:13px;text-align:center;margin-top:22px">New around here? <a href="{% url 'register' %}" style="color:#7558f5;font-weight:700">Create an account</a></p></div></main>
+{% endblock %}

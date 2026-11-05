@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Campusly · Student Management, reimagined{% endblock %}
+{% block content %}
+<main class="wrap">
+  <section class="hero">
+    <div><div class="eyebrow">✦ Your campus, in one place</div><h1>Student life,<br><span class="gradient-text">beautifully</span> organised.</h1><p>A fresh, simple way to manage student records, keep your campus data in sync, and spend less time on admin. Built with Django + Supabase.</p>
+      <div class="hero-actions"><a class="btn primary" href="{% url 'register' %}">Launch your dashboard ↗</a><a class="btn soft" href="{% url 'login' %}">I already have an account</a></div>
+      <p style="font-size:12px;margin-top:20px">⚡ CRUD ready · 🔐 Secure login · ☁️ Supabase database</p>
+    </div>
+    <div class="hero-art"><div class="float-card one"><div class="spark">🎓</div><div style="font-weight:700;margin:10px 0 5px">Campus overview</div><div style="color:#77758e;font-size:12px">Everything in its right place.</div><div style="display:flex;gap:6px;margin-top:18px"><span style="height:7px;width:60%;background:#8c70ff;border-radius:10px"></span><span style="height:7px;width:24%;background:#ff83c0;border-radius:10px"></span></div></div><div class="float-card two"><div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:12px;color:#77758e">Made for momentum</div><div class="hero-stat">100% ✨</div></div><div style="font-size:34px">📚</div></div><div style="font-size:12px;color:#77758e">Create. Read. Update. Delete.</div></div></div>
+  </section>
+  <section class="grid feature-grid">
+    <div class="panel feature"><div class="feature-icon">🪄</div><h3>Easy CRUD</h3><p class="sub">Add, view, edit and remove student records with a clean interface.</p></div>
+    <div class="panel feature"><div class="feature-icon">🛡️</div><h3>Role-aware access</h3><p class="sub">Separate admin permissions from regular user access using Django auth.</p></div>
+    <div class="panel feature"><div class="feature-icon">☁️</div><h3>Supabase powered</h3><p class="sub">Use hosted PostgreSQL for your student data, with credentials kept private.</p></div>
+  </section>
+</main>
+{% endblock %}

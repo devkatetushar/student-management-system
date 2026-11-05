@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Delete student · Campusly{% endblock %}
+{% block content %}
+<main class="wrap"><div class="auth-card panel"><div style="font-size:38px">🫣</div><h1>Delete this student?</h1><p class="sub">You're about to delete <strong>{{ student.full_name }}</strong> ({{ student.student_id }}). This cannot be undone.</p><form method="post">{% csrf_token %}<div class="form-actions"><button class="btn danger" type="submit">Yes, delete record</button><a class="btn soft" href="{% url 'student_list' %}">Keep student</a></div></form></div></main>
+{% endblock %}

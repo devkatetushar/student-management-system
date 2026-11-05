@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Create account · Campusly{% endblock %}
+{% block content %}
+<main class="wrap"><div class="auth-card panel"><div class="eyebrow">YOUR NEXT CHAPTER ✦</div><h1>Join Campusly.</h1><p class="sub">Create an account to start your student workspace.</p>
+<form method="post">{% csrf_token %}{{ form.non_field_errors }}{% for field in form %}<div class="formfield" style="margin:16px 0"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field.as_widget|safe }}{% if field.help_text %}<div class="helptext">{{ field.help_text|safe }}</div>{% endif %}{{ field.errors }}</div>{% endfor %}<script>document.querySelectorAll('input').forEach(e=>e.classList.add('field'));</script><button class="btn primary" style="width:100%;margin-top:8px" type="submit">Create my account ↗</button></form><p class="sub" style="font-size:13px;text-align:center;margin-top:22px">Already registered? <a href="{% url 'login' %}" style="color:#7558f5;font-weight:700">Log in</a></p></div></main>
+{% endblock %}
